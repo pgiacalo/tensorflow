@@ -1,10 +1,3 @@
-# Here's how to find your Android revision and version numbers
-# cat /android/sdk/platform-tools/source.properties | grep Pkg.Revision
-# cat /android/sdk/tools/source.properties | grep Pkg.Revision
-# Android build tools are placed in versioned directories, so you can find them via
-# ls /android/sdk/build-tools/
-
-
 workspace(name = "org_tensorflow")
 
 http_archive(
@@ -24,28 +17,23 @@ closure_repositories()
 load("//tensorflow:workspace.bzl", "tf_workspace")
 
 # Uncomment and update the paths in these entries to build the Android demo.
-android_sdk_repository(
-    name = "androidsdk",
-    # NOTE: TO FIND THE api_level:
-    # cd ~/Library/Android/sdk/platform-tools]  
-    # cat source.properties
-    api_level = 25,
-    # Ensure that you have the build_tools_version below installed in the 
-    # SDK manager as it updates periodically. 
-    # TO GET THE BUILD TOOLS VERSION: ls ~/Library/Android/sdk/build-tools
-    build_tools_version = "25.0.3",
-    # Replace with path to Android SDK on your system
-    path = "/Users/phil/Library/Android/sdk",
-)
+#android_sdk_repository(
+#    name = "androidsdk",
+#    api_level = 23,
+#    # Ensure that you have the build_tools_version below installed in the 
+#    # SDK manager as it updates periodically.
+#    build_tools_version = "25.0.2",
+#    # Replace with path to Android SDK on your system
+#    path = "<PATH_TO_SDK>",
+#)
 #
 # Android NDK r12b is recommended (higher may cause issues with Bazel)
-android_ndk_repository(
-    name="androidndk",
-    path="/Users/phil/dev/google/android/android-ndk-r12b",
-    # This needs to be 14 or higher to compile TensorFlow. 
-    # Note that the NDK version is not the API level.
-    api_level=14
-)
+#android_ndk_repository(
+#    name="androidndk",
+#    path="<PATH_TO_NDK>",
+#    # This needs to be 14 or higher to compile TensorFlow. 
+#    # Note that the NDK version is not the API level.
+#    api_level=14)
 
 # Please add all new TensorFlow dependencies in workspace.bzl.
 tf_workspace()
